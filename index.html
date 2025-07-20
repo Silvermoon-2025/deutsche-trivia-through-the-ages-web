@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日耳曼尼亚二三事</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FFD700',
+                        accent: '#0F4C81',
+                        neutral: '#F8FAFC',
+                        'neutral-dark': '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        /* 网页进入平滑动画 */
+        body {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 夜间模式样式 */
+        body.dark-mode {
+            background-color: #1a202c;
+            color: white;
+        }
+
+        body.dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+
+        body.dark-mode .text-neutral-dark {
+            color: white;
+        }
+
+        body.dark-mode .bg-gray-50 {
+            background-color: #4a5568;
+        }
+
+        /* 夜间模式按钮样式 */
+        #dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #165DFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease;
+        }
+
+        #dark-mode-toggle:hover {
+            background-color: #0f4c81;
+        }
+    </style>
+</head>
+
+<body class="bg-neutral text-neutral-dark font-sans min-h-screen flex flex-col">
+    <!-- 夜间模式按钮 -->
+<button id="theme-toggle" class="fixed bottom-6 right-6 w-32 h-14 rounded-full border-2 border-yellow-400 bg-white shadow-lg overflow-hidden transition-all duration-300 ease-in-out z-50 cursor-pointer hover:scale-105 active:scale-95">
+    <div class="relative w-full h-full overflow-hidden">
+        <!-- 白天模式背景 - 云彩 -->
+        <div id="day-bg" class="absolute inset-0 bg-blue-100 transition-opacity duration-500 ease-in-out">
+            <div class="absolute top-3 left-2 w-12 h-4 bg-white rounded-full"></div>
+            <div class="absolute top-5 left-7 w-10 h-4 bg-white rounded-full"></div>
+            <div class="absolute top-3 right-2 w-12 h-4 bg-white rounded-full"></div>
+            <div class="absolute top-5 right-7 w-10 h-4 bg-white rounded-full"></div>
+        </div>
+        
+        <!-- 夜晚模式背景 - 星星 -->
+        <div id="night-bg" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out">
+            <!-- 星星只分布在左侧区域 -->
+            <div class="absolute top-3 left-3 w-1 h-1 bg-yellow-300 rounded-full animate-pulse"></div>
+            <div class="absolute top-6 left-8 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+            <div class="absolute top-4 left-12 w-1 h-1 bg-yellow-300 rounded-full animate-pulse" style="animation-delay: 1s"></div>
+            <div class="absolute bottom-3 left-5 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse" style="animation-delay: 1.5s"></div>
+            <div class="absolute bottom-5 left-10 w-1 h-1 bg-yellow-300 rounded-full animate-pulse" style="animation-delay: 2s"></div>
+        </div>
+        
+        <!-- 太阳/月亮组合 -->
+        <div id="toggle-icon" class="absolute top-1 w-12 h-12 rounded-full transition-transform duration-700 ease-in-out transform">
+            <!-- 太阳 -->
+            <div id="sun" class="absolute inset-0 w-full h-full bg-yellow-400 rounded-full shadow-lg shadow-yellow-400/50 transition-opacity duration-300 ease-in-out">
+                <!-- 太阳光芒 -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="absolute w-14 h-1.5 bg-yellow-400 rounded-full"></div>
+                    <div class="absolute w-1.5 h-14 bg-yellow-400 rounded-full"></div>
+                    <div class="absolute w-10 h-1.5 bg-yellow-400 rounded-full transform rotate-45"></div>
+                    <div class="absolute w-1.5 h-10 bg-yellow-400 rounded-full transform rotate-45"></div>
+                </div>
+            </div>
+            
+            <!-- 月亮 -->
+            <div id="moon" class="absolute inset-0 w-full h-full bg-gray-200 rounded-full shadow-lg opacity-0 transition-opacity duration-300 ease-in-out">
+                <!-- 月亮坑洼 -->
+                <div class="absolute top-2 left-2 w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div class="absolute top-4 right-3 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+                <div class="absolute bottom-3 left-3 w-2.5 h-2.5 bg-gray-300 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+</button>
+
+    <!-- 顶部导航 -->
+    <header class="bg-primary text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <a href="https://silvermoon-2025.github.io/historyloverweb/"
+                        class="flex items-center hover:opacity-90 transition-opacity">
+                        <i class="fa fa-book text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">历史爱好者服务专设网站</span>
+                    </a>
+                </div>
+                <div class="text-center md:text-right">
+                    <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-shadow mb-2">日耳曼尼亚二三事</h1>
+                    <p class="text-white/80">探索德意志的历史、文化以及现代历闻</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- 进度指示器 -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-xl font-semibold">平台文章总数</h2>
+                <span class="text-sm text-gray-600">6/20</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-primary h-2.5 rounded-full" style="width: 30%"></div>
+            </div>
+        </div>
+
+        <!-- 德国信息卡片 -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 transform transition-all duration-300 hover:shadow-2xl">
+            <div class="relative">
+                <img src="日耳曼尼亚二三事\picture\新天鹅堡.png" alt="德国" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-white p-6">德意志联邦共和国</h2>
+                </div>
+            </div>
+            <div class="p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <div class="prose max-w-none">
+                            <p>德意志联邦共和国（德语：Bundesrepublik Deutschland），简称“德国”，是位于中欧的联邦议会共和制国家。现代德国是欧洲联盟和北约创始会员国之一，也是G7、G20和经合组织成员。是高度发达的工业国，经济总量居欧洲首位。</p>
+                            <p>-----</p>
+                            <p>首都：柏林</p>
+                            <p>成立时间：1949年5月23日</p>
+                            <p>官方语言：德语</p>
+                            <p>政治体制：联邦制、议会共和制</p>
+                            <p>货币：欧元（€）</p>
+                            <p>主要宗教：基督教（新教、天主教为主）</p>
+                            <p>国歌：《德意志之歌》（第三段）</p>
+                            <p>最大城市：柏林、汉堡、慕尼黑</p>
+                            <p>主要河流：莱茵河、多瑙河、易北河</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <h3 class="font-bold text-lg mb-3 flex items-center">
+                            <i class="fa fa-map-marker text-primary mr-2"></i> 地理位置
+                        </h3>
+                        <p class="text-sm">德国位于欧洲中部，东邻波兰、捷克，南毗奥地利、瑞士，西接荷兰、比利时、卢森堡、法国，北接丹麦，濒临北海和波罗的海。</p>
+                        <div class="mt-4">
+                            <h3 class="font-bold text-lg mb-3 flex items-center">
+                                <i class="fa fa-users text-primary mr-2"></i> 人口
+                            </h3>
+                            <p class="text-sm">约8360万（2024年数据）</p>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="font-bold text-lg mb-3 flex items-center">
+                                <i class="fa fa-area-chart text-primary mr-2"></i> 面积
+                            </h3>
+                            <p class="text-sm">约357,582平方公里</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文章列表 -->
+        <div class="space-y-8">
+            <!-- 文章1 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">铁血宰相俾斯曼的宏图</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年6月30日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">在 19 世纪风云变幻的欧洲政坛，奥托・冯・俾斯麦宛如一颗耀眼的巨星，以 “铁血宰相”
+                        之名镌刻于历史长卷。他提出的 “当代的重大问题不是通过演说和多数人的决议所能解决的，而是要用铁和血”，不仅是其政治哲学的凝练，更成为改变欧洲格局的行动纲领。</p>
+                    <p class="mb-4">1862年，俾斯麦在普鲁士议会的首次演说中，掷地有声地阐述了他的铁血政策。这一理念指导下，普鲁士通过三次王朝战争——丹麦战争(1864)、普奥战争(1866)和普法战争(1870 - 1871)，完成了德意志的统一大业。1871年1月18日，威廉一世在凡尔赛宫镜厅加冕为德意志皇帝，标志着统一的德意志帝国诞生，俾斯麦也因此成为帝国首任宰相。</p>
+                    <p class="mb-4">作为帝国宰相，俾斯麦展现出卓越的外交智慧。他通过复杂的联盟体系，精心维持着欧洲的均势，为德国赢得了宝贵的和平发展时期。其 “大陆政策” 的核心是孤立法国，为此与奥匈帝国、俄罗斯帝国结成 “三皇同盟”，后又与奥匈帝国、意大利组成 “三国同盟”。</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
+                        <p>“当代的重大问题不是通过演说和多数人的决议所能解决的，而是要用铁和血。”</p>
+                        <footer class="text-right mt-2">—— 奥托·冯·俾斯麦</footer>
+                    </blockquote>
+                    <p class="mb-4">然而，俾斯麦的铁血之路也埋下隐患。过分依赖强权政治，导致德国军国主义传统得以强化；其外交体系的脆弱性，随着继任者策略失当而崩塌，为一战爆发埋下伏笔。但不可否认，这位铁血宰相以非凡的政治智慧与果敢的行动力，推动德国完成从邦联到帝国的跨越，深刻影响了欧洲近现代历史走向，成为政治谋略与战略规划的经典范例。</p>
+                </div>
+            </article>
+
+            <!-- 文章2 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国工业史·汽车帝国开创者</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年6月30日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">德国汽车工业是技术与匠心的结晶，从早期的技术突破到如今的产业辉煌，无数先驱奠定了"汽车帝国"的根基。我将聚焦关键人物与历史节点，展现德国汽车工业的崛起历程。</p>
+                    <p class="mb-4">1886年，卡尔·本茨(Karl Benz)发明了世界上第一辆实用化的内燃机汽车——三轮"奔驰专利汽车"(Benz
+                        Patent - Motorwagen)，这一创举标志着汽车时代的正式开启。同年，戈特利布·戴姆勒(Gottlieb Daimler)成功研制出第一台高速汽油发动机，并将其安装在马车上，打造了世界上第一辆四轮汽车。</p>
+                    <h3 class="text-xl font-bold my-4">汽车工业的崛起</h3>
+                    <p class="mb-4">20世纪初，德国汽车工业开始规模化发展。1926年，奔驰与戴姆勒公司合并，成立戴姆勒 - 奔驰公司，生产梅赛德斯 - 奔驰汽车，成为德国汽车工业的重要里程碑。</p>
+                    <div class="bg-gray-50 p-4 rounded-lg my-6">
+                        <h4 class="font-bold mb-2">德国汽车工业先驱人物</h4>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><span class="font-medium">卡尔·本茨(Karl Benz)</span>：发明第一辆实用化汽车，奔驰公司创始人</li>
+                            <li><span class="font-medium">戈特利布·戴姆勒(Gottlieb Daimler)</span>：高速汽油发动机发明者，戴姆勒公司创始人</li>
+                            <li><span class="font-medium">费迪南德·保时捷(Ferdinand Porsche)</span>：保时捷公司创始人，大众甲壳虫设计者</li>
+                            <li><span class="font-medium">奥古斯特·霍希(August Horch)</span>：奥迪公司创始人</li>
+                        </ul>
+                    </div>
+                    <p class="mb-4">1937年，大众汽车公司(Volkswagen)成立，其标志性产品"甲壳虫"(Beetle)成为全球最畅销的车型之一。费迪南德·保时捷(Ferdinand Porsche)设计的这款车，以其简洁可靠的特点，为德国汽车工业赢得了全球声誉。</p>
+                    <p class="mb-4">二战后，德国汽车工业迅速复兴，并在技术创新上持续突破。宝马(BMW)、奥迪(Audi)、保时捷(Porsche)等品牌相继崛起，形成了德国汽车工业多品牌、高品质的产业格局。</p>
+                </div>
+            </article>
+
+            <!-- 文章3 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">柏林墙的兴衰：冷战时期的德国分裂与统一</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">1961年8月13日，一道混凝土墙在柏林市中心拔地而起，将这座城市一分为二。这道墙不仅物理上分割了柏林，更成为冷战时期东西方意识形态对立的象征。本文将回顾柏林墙的兴衰历程，以及它所代表的德国分裂与统一的历史。</p>
+                    <p class="mb-4">二战结束后，德国被美、苏、英、法四国分区占领，柏林也被同样分割。随着冷战加剧，德国逐渐分裂为东德(德意志民主共和国)和西德(德意志联邦共和国)。1948年的柏林封锁与空运事件，标志着东西方在德国问题上的尖锐对立。</p>
+                    <h3 class="text-xl font-bold my-4">柏林墙的建造</h3>
+                    <p class="mb-4">20世纪50年代末至60年代初，大量东德居民通过柏林逃往西德，造成东德严重的人才流失和经济困境。为阻止这一趋势，1961年8月13日，东德政府开始在东、西柏林之间修筑围墙，最初是铁丝网，后逐渐加固为混凝土墙。</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
+                        <p>"自由有许多困难，民主亦非完美，然而我们从未建造一堵墙把我们的人民关在里面，来防止他们离开我们。"</p>
+                        <footer class="text-right mt-2">—— 约翰·F·肯尼迪，1963年</footer>
+                    </blockquote>
+                    <p class="mb-4">柏林墙全长约155公里，由两道墙组成，中间是布满地雷、瞭望塔和警犬的"死亡地带"。在接下来的28年里，这道墙成为冷战最具象的象征，也成为无数东德人无法逾越的障碍。据统计，在柏林墙存在期间，约有5000人尝试翻越，至少136人死亡。</p>
+                    <h3 class="text-xl font-bold my-4">柏林墙的倒塌与德国统一</h3>
+                    <p class="mb-4">1989年，东欧剧变浪潮席卷而来。11月9日，东德政府宣布开放柏林墙，允许公民自由穿越。这一历史性时刻引发了民众的狂欢，人们用锤子和镐头开始拆除这道象征分裂的墙。</p>
+                    <p class="mb-4">1990年10月3日，东德正式并入西德，德国实现统一。柏林墙的倒塌不仅标志着德国分裂的终结，更被视为冷战结束的重要里程碑。</p>
+                </div>
+            </article>
+
+            <!-- 文章4 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国音乐史·贝多芬的人生与创作</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">路德维希·凡·贝多芬（Ludwig van Beethoven，1770 - 1827）是德国最伟大的作曲家之一，也是西方音乐史上的关键人物。他的作品不仅标志着古典主义音乐的巅峰，更预示了浪漫主义音乐的到来。</p>
+                    <p class="mb-4">贝多芬出生于德国波恩的一个音乐世家，自幼接受严格的音乐训练。尽管他的童年充满艰辛——父亲酗酒且对他管教严厉——但他的音乐天赋在年轻时就已显露无疑。1792年，贝多芬前往维也纳，师从海顿学习作曲，从此开始了他辉煌的音乐生涯。</p>
+                    <h3 class="text-xl font-bold my-4">创作分期</h3>
+                    <p class="mb-4">贝多芬的创作生涯通常分为三个时期：</p>
+                    <ol class="list-decimal pl-5 space-y-2 mb-4">
+                        <li><strong>早期（1794 - 1800）</strong>：这一时期贝多芬的作品受到海顿和莫扎特的影响，但已开始展现个人风格，如《第一交响曲》《第二交响曲》等。</li>
+                        <li><strong>中期（1801 - 1814）</strong>：这是贝多芬创作的黄金时期，他创作了许多标志性作品，包括《第三交响曲》（《英雄》）、《第五交响曲》（《命运》）、《第六交响曲》（《田园》）、《热情奏鸣曲》等。这一时期的作品充满力量和激情，表达了对自由、平等的追求。</li>
+                        <li><strong>晚期（1815 - 1827）</strong>：尽管这一时期贝多芬已完全失聪，但他的创作达到了新的高度，作品风格更加内省和抽象，如《第九交响曲》（《欢乐颂》）、《庄严弥撒》以及晚期弦乐四重奏等。</li>
+                    </ol>
+                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
+                        <p>"我要扼住命运的咽喉，它决不能使我完全屈服。"</p>
+                        <footer class="text-right mt-2">—— 贝多芬</footer>
+                    </blockquote>
+                    <p class="mb-4">贝多芬的音乐创新不仅体现在他的作品结构和和声语言上，更在于他赋予音乐深刻的思想内涵。他将交响乐提升到表达哲学思考和人类情感的高度，对后世作曲家产生了深远影响。他的《第九交响曲》首次将人声引入交响乐，以席勒的《欢乐颂》为歌词，表达了人类对和平与团结的渴望，成为音乐史上的不朽经典。</p>
+                </div>
+            </article>
+
+            <!-- 文章5 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国哲学·康德与他的批判哲学</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">伊曼努尔·康德（Immanuel Kant，1724 - 1804）是德国古典哲学的奠基人，他的批判哲学体系对西方哲学产生了深远影响。康德的思想不仅改变了哲学思考的方向，也为现代科学、伦理学和美学奠定了理论基础。</p>
+                    <p class="mb-4">康德出生于东普鲁士的哥尼斯堡（现俄罗斯加里宁格勒），并在此度过了他的一生。尽管他从未远离家乡，但他的思想却具有全球性的影响力。他的代表作《纯粹理性批判》（1781）、《实践理性批判》（1788）和《判断力批判》（1790）构成了他的批判哲学体系，分别探讨了知识、道德和审美三个领域的基本问题。</p>
+                    <h3 class="text-xl font-bold my-4">批判哲学的核心</h3>
+                    <p class="mb-4">康德哲学的核心是"批判"，即对人类理性能力的考察。他试图调和经验主义和理性主义的矛盾，提出人类知识既依赖于经验，也依赖于先天的认知形式。</p>
+                    <p class="mb-4">在《纯粹理性批判》中，康德提出了"先天综合判断"的概念，认为人类的知识既包含经验内容，也包含先天的认知结构（如时间、空间和因果关系）。他认为，这些先天结构是人类认识世界的必要条件，但同时也限制了我们对"物自体"的认识。</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
+                        <p>"有两样东西永远是光辉灿烂的，在我们的心灵中越是经常地思考它们，就越是充满永远新鲜、有增无已的赞叹和敬畏：我们头上的星空和我们心中的道德法则。"</p>
+                        <footer class="text-right mt-2">—— 康德，《实践理性批判》</footer>
+                    </blockquote>
+                    <p class="mb-4">在伦理学领域，康德提出了"绝对命令"的概念，认为道德行为必须基于普遍的理性原则，而不是个人欲望或后果。他强调人的自主性和尊严，认为每个人都应该被视为目的，而不仅仅是手段。</p>
+                    <p class="mb-4">康德的哲学思想对后世产生了深远影响，启发了费希特、谢林、黑格尔等德国古典哲学家的思考，也为现代哲学、科学和伦理学提供了重要的理论资源。他的思想至今仍是哲学研究的重要课题，其对人类理性和道德的深刻思考，依然具有重要的现实意义。</p>
+                </div>
+            </article>
+
+            <!-- 文章6 -->
+            <article class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国美食文化·啤酒与香肠的国度</h2>
+                <div class="text-center text-gray-500 text-sm mb-6">
+                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                </div>
+                <div class="prose max-w-none">
+                    <p class="text-lg mb-4">德国美食以其丰富多样的肉类、面包和啤酒而闻名于世。从传统的香肠、烤肉到精致的甜点，德国美食文化不仅反映了其农业历史和地域多样性，也展现了德国人对品质和工艺的追求。</p>
+                    <h3 class="text-xl font-bold my-4">香肠文化</h3>
+                    <p class="mb-4">德国被誉为"香肠之国"，据统计有超过1500种不同的香肠。这些香肠在原料、制作方法和风味上各有特色，常见的包括：</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>咖喱香肠（Currywurst）</strong>：切片的香肠配以咖喱番茄酱，是德国最受欢迎的快餐之一。</li>
+                        <li><strong>白香肠（Weiße Wurst）</strong>：巴伐利亚地区的特色香肠，由小牛肉和猪肉制成，通常搭配甜芥末和椒盐卷饼。</li>
+                        <li><strong>纽伦堡香肠（Nürnberger Bratwurst）</strong>：细小的烤香肠，通常三根一组出售，是纽伦堡地区的传统美食。</li>
+                        <li><strong>图林根烤香肠（Thüringer Rostbratwurst）</strong>：用胡椒和大蒜调味的猪肉香肠，是图林根地区的代表性美食。</li>
+                    </ul>
+                    <h3 class="text-xl font-bold my-4">啤酒传统</h3>
+                    <p class="mb-4">德国是世界著名的啤酒生产和消费大国，其啤酒文化可以追溯到中世纪。德国啤酒以其纯净的原料和精湛的酿造工艺而闻名，《纯净啤酒法》（Reinheitsgebot）自1516年起就规定了啤酒只能使用水、麦芽、啤酒花和酵母四种原料。</p>
+                    <p class="mb-4">德国有超过1300家啤酒厂，生产的啤酒种类繁多，包括：</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>拉格啤酒（Lager）</strong>：最常见的啤酒类型，口感清爽，如皮尔森（Pils）。</li>
+                        <li><strong>小麦啤酒（Weizenbier）</strong>：以小麦芽为主要原料，口感丰富，带有香蕉和丁香的香气。</li>
+                        <li><strong>黑啤酒（Schwarzbier）</strong>：深色啤酒，口感醇厚，带有巧克力和咖啡的风味。</li>
+                        <li><strong>双料啤酒（Doppelbock）</strong>：高酒精度的啤酒，通常在宗教节日期间饮用。</li>
+                    </ul>
+                    <p class="mb-4">每年十月举行的慕尼黑啤酒节（Oktoberfest）是世界上最大的民间节日之一，吸引着来自世界各地的游客。在为期16天的庆典中，人们品尝啤酒、享用传统美食，并欣赏音乐和舞蹈表演。</p>
+                    <h3 class="text-xl font-bold my-4">其他特色美食</h3>
+                    <p class="mb-4">除了香肠和啤酒，德国还有许多其他特色美食：</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>烤猪肘（Schweinshaxe）</strong>：外酥里嫩的烤猪肘，是巴伐利亚地区的传统主菜。</li>
+                        <li><strong>酸菜（Sauerkraut）</strong>：发酵的卷心菜，常作为肉类的配菜。</li>
+                        <li><strong>德国面包（Brot）</strong>：德国有超过300种不同的面包，从硬皮面包到柔软的酵母面包，各具特色。</li>
+                        <li><strong>苹果酒（Apfelschorle）</strong>：苹果汁与气泡水的混合饮料，在德国广受欢迎。</li>
+                    </ul>
+                    <p>德国美食文化不仅是味觉的享受，更是德国历史、文化和生活方式的体现。无论是在传统的啤酒屋还是现代化的餐厅，游客都能体验到德国人对美食的热爱和对品质的执着追求。</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-bold">日耳曼尼亚二三事</h3>
+                    <p class="text-white/80 text-sm">探索德意志的历史、文化以及现代历闻</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm">
+                        [发布地] 中国-北京<br>
+                        [网站创建时间] 2025年6月30日<br>
+                        [网页名称] 日耳曼尼亚二三事<br>
+                        [主要内测者] 我不是徐某人（QQ）
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-6 pt-6 text-center text-sm text-white/70">
+                &copy; 2025 日耳曼尼亚二三事
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const toggleIcon = document.getElementById('toggle-icon');
+    const sun = document.getElementById('sun');
+    const moon = document.getElementById('moon');
+    const dayBg = document.getElementById('day-bg');
+    const nightBg = document.getElementById('night-bg');
+    const body = document.body;
+    
+    // 计算正确的位移量
+    const calculateTranslateX = () => {
+        const buttonWidth = themeToggle.offsetWidth;
+        const iconWidth = toggleIcon.offsetWidth;
+        const borderWidth = 2; // 按钮边框宽度
+        return buttonWidth - iconWidth - (borderWidth * 2);
+    };
+    
+    // 检查本地存储中的主题偏好
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // 初始化主题
+    if (isDarkMode) {
+        applyDarkMode();
+    } else {
+        // 确保太阳在最左侧
+        toggleIcon.style.left = '2px';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            applyLightMode();
+            localStorage.setItem('darkMode', 'false');
+        } else {
+            applyDarkMode();
+            localStorage.setItem('darkMode', 'true');
+        }
+    });
+    
+    function applyDarkMode() {
+        body.classList.add('dark-mode');
+        const translateX = calculateTranslateX() - 2; // 微调以确保完全贴合
+        toggleIcon.style.transform = `translateX(${translateX}px)`;
+        setTimeout(() => {
+            sun.style.opacity = '0';
+            moon.style.opacity = '1';
+        }, 300);
+        dayBg.style.opacity = '0';
+        nightBg.style.opacity = '1';
+    }
+    
+    function applyLightMode() {
+        body.classList.remove('dark-mode');
+        sun.style.opacity = '1';
+        moon.style.opacity = '0';
+        setTimeout(() => {
+            toggleIcon.style.transform = 'translateX(0)';
+        }, 100);
+        dayBg.style.opacity = '1';
+        nightBg.style.opacity = '0';
+    }
+    </script>
+</body>
+
+</html>
