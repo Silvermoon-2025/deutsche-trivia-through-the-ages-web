@@ -108,7 +108,7 @@
 
 <body class="bg-neutral text-neutral-dark font-sans min-h-screen flex flex-col">
 <!-- 音乐播放按钮（放在夜间模式按钮上方） -->
-<button onclick="toggleMusic()" style="position:fixed; bottom:6rem; right:1.5rem; width:3rem; height:3rem; border-radius:50%; background:white; border:2px solid #3b82f6; cursor:pointer; z-index:999;">
+<button id="musicButton" onclick="toggleMusic()" style="position:fixed; bottom:6rem; right:1.5rem; width:3rem; height:3rem; border-radius:50%; background:white; border:2px solid #3b82f6; cursor:pointer; z-index:999;">
   <i id="musicIcon" class="fa fa-music" style="color:#3b82f6; font-size:1.2rem;"></i>
 </button>
     <!-- 夜间模式按钮 -->
@@ -178,6 +178,7 @@
     <!-- 主内容区 -->
     <main class="flex-grow container mx-auto px-4 py-8">
         <!-- 绑定音乐信息块 -->
+<!-- 绑定音乐信息块 -->
 <div class="mb-8 bg-white dark:bg-blue-400 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl">
     <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3">
         <h2 class="text-xl font-bold text-white">站嵌音乐</h2>
@@ -186,15 +187,15 @@
         <div class="space-y-4">
             <div class="flex items-center">
                 <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">绑定时间：</span>
-                <span class="text-gray-800 dark:text-white">2025年7月26日</span>
+                <span id="bindTime" class="text-gray-800 dark:text-white">2025年7月26日</span>
             </div>
             <div class="flex items-center">
                 <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">绑定音乐：</span>
-                <span class="text-gray-800 dark:text-white">Deutschland (Radio Mix) - Die Prinzen</span>
+                <span id="musicName" class="text-gray-800 dark:text-white">Deutschland (Radio Mix) - Die Prinzen</span>
             </div>
             <div class="flex items-center">
                 <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">续播时间：</span>
-                <span class="text-gray-800 dark:text-white">2025年7月26日~2025年9月30日</span>
+                <span id="playTime" class="text-gray-800 dark:text-white">2025年7月26日~2025年9月30日</span>
             </div>
         </div>
     </div>
@@ -473,34 +474,109 @@
     }
     </script>
         <!-- 音频播放核心组件（放在页面底部） -->
-<audio id="myAudio" src="日耳曼尼亚二三事.mp3" loop></audio>
+<!-- 音频播放组件 -->
+<audio id="myAudio" loop preload="metadata"></audio>
 <!-- 音乐控制脚本（放在页面最底部的script中） -->
 <script>
+// 日耳曼尼亚二三事 音乐控制逻辑
+let currentAudioSrc = "";
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', function() {
+  // 初始化音乐信息
+  updateMusicInfoByTime();
+  // 定时检查时间（5分钟一次）
+  setInterval(updateMusicInfoByTime, 5 * 60 * 1000);
+  
+  const audio = document.getElementById("myAudio");
+  const musicToggle = document.getElementById("musicButton");
+  const musicIcon = document.getElementById("musicIcon");
+  
+  // 监听音频播放状态变化，同步按钮样式
+  audio.addEventListener('play', function() {
+    musicToggle.style.background = "#3b82f6";
+    musicIcon.className = "fa fa-pause";
+    musicIcon.style.color = "white";
+  });
+  
+  audio.addEventListener('pause', function() {
+    musicToggle.style.background = "white";
+    musicIcon.className = "fa fa-music";
+    musicIcon.style.color = "#3b82f6";
+  });
+});
+
+// 根据时间更新音乐信息和音频源
+function updateMusicInfoByTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  
+  // 判断是否为日间（5:30~18:29）
+  const isDaytime = (hours > 5 || (hours === 5 && minutes >= 30)) && 
+                   (hours < 18 || (hours === 18 && minutes < 30));
+  
+  // 获取DOM元素
+  const bindTimeEl = document.getElementById('bindTime');
+  const musicNameEl = document.getElementById('musicName');
+  const playTimeEl = document.getElementById('playTime');
+  const audio = document.getElementById("myAudio");
+  
+  // 确定当前应该播放的音乐
+  let newSrc = isDaytime ? "日耳曼尼亚二三事.mp3" : "日耳曼尼亚二三事（夜间）.mp3";
+  
+  // 只有当音乐源变化时才更新
+  if (currentAudioSrc !== newSrc) {
+    // 记录当前播放状态
+    const wasPlaying = !audio.paused;
+    
+    // 更新音乐信息
+    if (isDaytime) {
+      bindTimeEl.textContent = "2025年7月26日";
+      musicNameEl.textContent = "Deutschland (Radio Mix) - Die Prinzen";
+      playTimeEl.textContent = "2025年7月26日~2025年9月30日";
+    } else {
+      bindTimeEl.textContent = "2025年8月21日";
+      musicNameEl.textContent = "Du bist ein Lied - Jason Anousheh";
+      playTimeEl.textContent = "2025年8月21日~2025年9月30日";
+    }
+    
+    // 更新音频源
+    currentAudioSrc = newSrc;
+    audio.src = newSrc;
+    
+    // 加载完成后恢复播放状态
+    audio.addEventListener('loadedmetadata', function onLoadedMetadata() {
+      if (wasPlaying) {
+        audio.play().catch(e => console.log("自动播放失败:", e));
+      }
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+    });
+  }
+}
+
+// 切换播放/暂停状态
 function toggleMusic() {
   const audio = document.getElementById("myAudio");
-  const icon = document.getElementById("musicIcon");
-  const button = icon.parentElement;
+  
+  // 确保使用正确的音频源
+  updateMusicInfoByTime();
   
   if (audio.paused) {
-    // 播放
-    audio.play().then(() => {
-      button.style.background = "#3b82f6";
-      icon.className = "fa fa-pause";
-      icon.style.color = "white";
-    }).catch(e => {
+    // 继续播放（从上次暂停位置）
+    audio.play().catch(e => {
       alert("播放失败: " + e.message);
       console.log(e);
     });
   } else {
-    // 暂停
+    // 暂停播放
     audio.pause();
-    button.style.background = "white";
-    icon.className = "fa fa-music";
-    icon.style.color = "#3b82f6";
   }
 }
+
+// 确保音乐按钮点击事件正确绑定
+document.getElementById("music-toggle").onclick = toggleMusic;
 </script>
 </body>
 
 </html>
-
