@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,760 +7,721 @@
     <title>日耳曼尼亚二三事</title>
     <link rel="icon" href="历史爱好者服务专设网站（网页图标）.ico" type="image/x-icon">
     <link rel="shortcut icon" href="历史爱好者服务专设网站（网页图标）.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#165DFF',
-                        secondary: '#FFD700',
-                        accent: '#0F4C81',
-                        neutral: '#F8FAFC',
-                        'neutral-dark': '#333333',
-                    },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
+                    colors: {
+                        primary: '#2563EB',
+                        accent: '#F59E0B',
+                        dark: '#0F172A',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'soft-hover': '0 10px 30px -5px rgba(0, 0, 0, 0.1)',
+                    }
                 }
             }
         }
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
+            .glass {
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
-
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            .dark .glass {
+                background-color: rgba(30, 41, 59, 0.8);
+                border-color: rgba(51, 65, 85, 0.5);
             }
-
+            .text-balance {
+                text-wrap: balance;
+            }
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                background-color: #d1d5db;
+                border-radius: 9999px;
+            }
+            .dark ::-webkit-scrollbar-thumb {
+                background-color: #475569;
+            }
             .card-hover {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                transition: all 300ms;
             }
-
             .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+                transform: translateY(-0.25rem);
             }
-
             .fade-in-up {
-                animation: fadeInUp 0.6s ease-out forwards;
+                animation: fadeInUp 0.8s ease-out forwards;
                 opacity: 0;
                 transform: translateY(20px);
             }
-
-            .stagger-1 {
-                animation-delay: 0.1s;
-            }
-
-            .stagger-2 {
-                animation-delay: 0.2s;
-            }
-
-            .stagger-3 {
-                animation-delay: 0.3s;
-            }
-
-            .stagger-4 {
-                animation-delay: 0.4s;
-            }
-
-            .stagger-5 {
-                animation-delay: 0.5s;
-            }
-
-            .stagger-6 {
-                animation-delay: 0.6s;
-            }
-
+            .stagger-1 { animation-delay: 0.1s; }
+            .stagger-2 { animation-delay: 0.2s; }
+            .stagger-3 { animation-delay: 0.3s; }
+            .stagger-4 { animation-delay: 0.4s; }
+            .stagger-5 { animation-delay: 0.5s; }
+            .stagger-6 { animation-delay: 0.6s; }
             .scroll-fade {
                 opacity: 0;
                 transform: translateY(30px);
                 transition: opacity 0.6s ease, transform 0.6s ease;
             }
-
             .scroll-fade.visible {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* 网页进入平滑动画 */
         body {
             animation: fadeIn 1s ease-in-out;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* 夜间模式样式 */
-        body.dark-mode {
-            background-color: #1a202c;
-            color: white;
-        }
-
-        body.dark-mode .bg-white {
-            background-color: #2d3748;
-        }
-
-        body.dark-mode .text-neutral-dark {
-            color: white;
-        }
-
-        body.dark-mode .bg-gray-50 {
-            background-color: #4a5568;
-        }
-
-        body.dark-mode #music-icon {
-            color: #3b82f6 !important;
-        }
-
-        body.dark-mode #music-toggle .bg-blue-100 {
-            background-color: #dbeafe !important;
-        }
-
-        body.dark-mode #theme-toggle span,
-        body.dark-mode #music-toggle span {
-            color: white !important;
-        }
-
-        body.dark-mode #theme-toggle .theme-icon-bg {
-            background-color: #4b5563 !important;
-        }
-
-        body.dark-mode #settings-toggle i {
-            color: white !important;
-        }
-
-        /* 夜间模式按钮样式 */
-        #dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #165DFF;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: background-color 0.3s ease;
-        }
-
-        #dark-mode-toggle:hover {
-            background-color: #0f4c81;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 
-<body class="bg-neutral text-neutral-dark font-sans min-h-screen flex flex-col">
-    
-    <!-- 设置按钮 -->
-    <button id="settings-toggle" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-gray-200 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:border-primary z-50">
-        <i class="fa fa-cog text-gray-600 text-xl transition-transform duration-300 hover:rotate-90 hover:text-primary"></i>
-    </button>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans min-h-screen transition-colors duration-300">
 
-    <!-- 遮罩层 -->
-    <div id="settings-overlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 invisible transition-all duration-300"></div>
-
-    <!-- 设置面板 -->
-    <div id="settings-panel" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-6 w-80 z-50 opacity-0 invisible transition-all duration-300 scale-95">
-        <h3 class="text-xl font-bold text-primary mb-6 text-center">设置</h3>
-        
-        <div class="space-y-4">
-            <!-- 夜间模式按钮 -->
-            <button id="theme-toggle" class="w-full h-12 rounded-xl border-2 border-yellow-400 bg-white shadow-md overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 relative">
-                <div class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center theme-icon-bg">
-                    <i id="theme-icon" class="fa fa-sun text-yellow-500 text-lg"></i>
-                </div>
-                <span class="absolute left-14 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-700">夜间模式</span>
-            </button>
-
-            <!-- 音乐播放按钮 -->
-            <button id="music-toggle" class="w-full h-12 rounded-xl border-2 border-blue-400 bg-white shadow-md overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 relative">
-                <div class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    <i id="music-icon" class="fa fa-music text-blue-500 text-lg"></i>
-                </div>
-                <span class="absolute left-14 top-1/2 transform -translate-y-1/2 text-sm font-medium text-gray-700">音乐播放</span>
-            </button>
-        </div>
-    </div>
-  
-      <!-- 文章目录 -->
-    <div class="fixed left-4 top-1/2 transform -translate-y-1/2 z-40">
-        <div id="toc-container" class="relative">
-            <!-- 目录按钮 -->
-            <div id="toc-toggle" class="w-12 h-40 bg-white rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-xl border-2 border-gray-200 hover:border-primary hover:bg-gray-100">
-                <i class="fa fa-list text-gray-600 text-xl transition-transform duration-300 hover:rotate-90 hover:text-primary"></i>
-            </div>
-            <!-- 目录内容 -->
-            <div id="toc-content" class="absolute left-14 top-0 w-64 bg-white rounded-xl shadow-lg border-2 border-gray-200 p-4 opacity-0 invisible transition-all duration-500 transform -translate-x-4 hover:shadow-2xl hover:border-primary">
-                <h3 class="text-lg font-bold text-primary mb-4 text-center">文章目录</h3>
-                <ul class="space-y-3">
-                    <li>
-                        <a href="#article-1" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">现代德国的复兴之路：从废墟到欧洲引擎</a>
-                    </li>
-                    <li>
-                        <a href="#article-2" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">德国工业史·汽车帝国开创者</a>
-                    </li>
-                    <li>
-                        <a href="#article-3" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">柏林墙的兴衰：冷战时期的德国分裂与统一</a>
-                    </li>
-                    <li>
-                        <a href="#article-4" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">神圣罗马帝国：为何千年帝国终成"散沙"？</a>
-                    </li>
-                    <li>
-                        <a href="#article-5" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">德国哲学·康德与他的批判哲学</a>
-                    </li>
-                    <li>
-                        <a href="#article-6" class="block px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-neutral-dark">二战风云：俾斯麦号战列舰为何那么有知名度？</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- 顶部导航 -->
-    <header class="bg-primary text-white shadow-lg fade-in-up">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <a href="https://silvermoon-2025.github.io/historyloverweb/"
-                        class="flex items-center hover:opacity-90 transition-opacity">
-                        <i class="fa fa-book text-2xl mr-2"></i>
-                        <span class="text-xl font-bold">历史爱好者服务专设网站</span>
+    <!-- 顶部固定导航 -->
+    <header class="fixed top-0 w-full z-50 glass border-b border-gray-200 dark:border-slate-700 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <a href="https://silvermoon-2025.github.io/historyloverweb/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                        <i class="fa fa-book text-primary text-xl"></i>
+                        <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white">历史爱好者服务专设网站</span>
                     </a>
+                    <span class="hidden sm:inline text-gray-300 dark:text-slate-600">|</span>
+                    <span class="hidden sm:inline text-sm text-gray-500 dark:text-slate-400">日耳曼尼亚二三事</span>
                 </div>
-                <div class="text-center md:text-right">
-                    <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-shadow mb-2">日耳曼尼亚二三事</h1>
-                    <p class="text-white/80">探索德意志的历史、文化以及现代历闻</p>
+                <div class="flex items-center gap-2">
+                    <!-- 移动端目录按钮 -->
+                    <button id="toc-toggle-mobile" class="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300">
+                        <i class="fa fa-list text-lg"></i>
+                    </button>
+                    <!-- 设置按钮 -->
+                    <button id="settings-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300">
+                        <i class="fa fa-cog text-lg"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- 主内容区 -->
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <!-- 绑定音乐信息块 -->
-<!-- 绑定音乐信息块 -->
-<div class="mb-8 bg-white dark:bg-blue-400 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-xl scroll-fade">
-    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3">
-        <h2 class="text-xl font-bold text-white">站嵌音乐</h2>
-    </div>
-    <div class="p-6">
-        <div class="space-y-4">
-            <div class="flex items-center">
-                <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">绑定时间：</span>
-                <span id="bindTime" class="text-gray-800 dark:text-white">2026年2月6日</span>
-            </div>
-            <div class="flex items-center">
-                <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">绑定音乐：</span>
-                <span id="musicName" class="text-gray-800 dark:text-white">Was wollen wir trinken (7 Tage lang) - Heino</span>
-            </div>
-            <div class="flex items-center">
-                <span class="w-24 text-gray-600 dark:text-gray-300 font-medium">续播时间：</span>
-                <span id="playTime" class="text-gray-800 dark:text-white">2026年2月6日~2026年7月1日</span>
+    <!-- 设置面板（下拉式） -->
+    <div id="settings-panel" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm" id="settings-overlay"></div>
+        <div class="absolute top-20 right-4 w-64 bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-4 border border-gray-100 dark:border-slate-700 transform transition-all duration-300 scale-95 opacity-0" id="settings-content">
+            <div class="space-y-3">
+                <button id="theme-toggle" class="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <span class="text-sm font-medium">夜间模式</span>
+                    <i id="theme-icon" class="fa fa-sun-o text-accent"></i>
+                </button>
+                <button id="music-toggle" class="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <span class="text-sm font-medium">背景音乐</span>
+                    <i id="music-icon" class="fa fa-music text-primary"></i>
+                </button>
             </div>
         </div>
     </div>
-</div>
 
-        <!-- 进度指示器 -->
-        <div class="mb-8 scroll-fade">
-            <div class="flex justify-between items-center mb-2">
-                <h2 class="text-xl font-semibold">平台文章总数</h2>
-                <span class="text-sm text-gray-600">6/20</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                <div class="bg-primary h-2.5 rounded-full" style="width: 30%"></div>
-            </div>
+    <!-- 移动端目录面板 -->
+    <div id="toc-mobile-panel" class="fixed inset-0 z-[55] hidden">
+        <div class="absolute inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm" id="toc-mobile-overlay"></div>
+        <div class="absolute top-20 left-4 w-64 bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-4 border border-gray-100 dark:border-slate-700 transform transition-all duration-300 scale-95 opacity-0" id="toc-mobile-content">
+            <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">文章目录</h3>
+            <nav class="space-y-1">
+                <a href="#article-1" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">欧洲今夏高温探因</a>
+                <a href="#article-2" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">德国工业史·汽车帝国</a>
+                <a href="#article-3" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">柏林墙的兴衰</a>
+                <a href="#article-4" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">神圣罗马帝国</a>
+                <a href="#article-5" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">德国哲学·康德</a>
+                <a href="#article-6" class="toc-mobile-link block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">二战风云：俾斯麦号</a>
+            </nav>
         </div>
+    </div>
 
-        <!-- 德国信息卡片 -->
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 transform transition-all duration-300 hover:shadow-2xl scroll-fade">
-            <div class="relative">
-                <!-- 轮播容器 -->
-                <div class="slideshow-container relative w-full h-64 overflow-hidden">
-                    <!-- 轮播图片 -->
-                    <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-100">
-                        <img src="Berlin.jpg" class="w-full h-full object-cover">
+    <!-- 主布局 -->
+    <main class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- 左侧边栏：目录（桌面端） -->
+            <aside class="hidden lg:block lg:col-span-3">
+                <div class="sticky top-24 space-y-6">
+                    <!-- 文章目录 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-slate-700">
+                        <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">文章目录</h3>
+                        <nav class="space-y-1">
+                            <a href="#article-1" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">欧洲今夏高温探因</a>
+                            <a href="#article-2" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">德国工业史·汽车帝国</a>
+                            <a href="#article-3" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">柏林墙的兴衰</a>
+                            <a href="#article-4" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">神圣罗马帝国</a>
+                            <a href="#article-5" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">德国哲学·康德</a>
+                            <a href="#article-6" class="block px-3 py-2 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors truncate">二战风云：俾斯麦号</a>
+                        </nav>
                     </div>
-                    <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
-                        <img src="Berlin's old building.jpg" class="w-full h-full object-cover">
+                    <!-- 音乐信息（侧边栏紧凑版） -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-slate-700">
+                        <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">站嵌音乐</h3>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">绑定时间</span>
+                                <span id="bindTime" class="font-medium">2026年2月6日</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">绑定音乐</span>
+                                <span id="musicName" class="font-medium">Was wollen wir trinken (7 Tage lang) - Heino</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">续播时间</span>
+                                <span id="playTime" class="font-medium">2026年2月6日~2026年7月1日</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
-                        <img src="夏洛滕堡宫.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
-                        <img src="慕尼黑.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <!-- 轮播控制渐变 -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                        <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-white p-6">德意志联邦共和国</h2>
+                    <!-- 进度指示器（侧边栏紧凑版） -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-slate-700">
+                        <h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">文章进度</h3>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">6 / 20</span>
+                            <span class="text-xs text-gray-400">30%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 30%"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="p-6 md:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <div class="prose max-w-none">
-                            <h2 class="font-bold text-xl mb-3">概要</h2>
+            </aside>
+
+            <!-- 右侧内容区 -->
+            <div class="col-span-1 lg:col-span-9 space-y-12">
+
+                <!-- 移动端：音乐信息 + 进度（桌面端在侧边栏） -->
+                <div class="lg:hidden space-y-6 scroll-fade">
+                    <!-- 音乐信息 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-slate-700">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fa fa-music text-primary"></i>
+                            <h3 class="text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">站嵌音乐</h3>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">绑定时间</span>
+                                <span id="bindTime-m" class="font-medium">2026年2月6日</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">绑定音乐</span>
+                                <span id="musicName-m" class="font-medium">Was wollen wir trinken (7 Tage lang) - Heino</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 dark:text-gray-500 text-xs">续播时间</span>
+                                <span id="playTime-m" class="font-medium">2026年2月6日~2026年7月1日</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 进度 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-slate-700">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">平台文章总数</span>
+                            <span class="text-xs text-gray-400">6/20</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Section：德国信息卡片 -->
+                <section class="relative rounded-2xl overflow-hidden shadow-soft bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 fade-in-up">
+                    <div class="relative h-64 sm:h-80 w-full overflow-hidden">
+                        <!-- 轮播图 -->
+                        <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-100">
+                            <img src="Berlin.jpg" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        </div>
+                        <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
+                            <img src="Berlin's old building.jpg" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        </div>
+                        <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
+                            <img src="夏洛滕堡宫.jpg" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        </div>
+                        <div class="slides absolute inset-0 transition-opacity duration-1000 opacity-0">
+                            <img src="慕尼黑.jpg" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        </div>
+                        <!-- 标题叠加 -->
+                        <div class="absolute bottom-0 left-0 p-8">
+                            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2">德意志联邦共和国</h1>
+                            <p class="text-gray-200 max-w-xl">探索德意志的历史、文化以及现代历闻</p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="prose dark:prose-invert max-w-none text-sm leading-relaxed">
+                            <h2 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">概要</h2>
                             <p class="mb-3">德意志联邦共和国（德语：Bundesrepublik Deutschland），简称"德国"，是位于中欧的联邦议会共和制国家。现代德国是欧洲联盟和北约创始会员国之一，也是G7、G20和经合组织成员，是高度发达的工业国，经济总量居欧洲首位。</p>
                             <p class="mb-3">德国是现代汽车工业的发源地，汽车产业是其经济的核心支柱之一，奔驰、宝马、大众、保时捷等全球顶尖品牌享誉世界，博世、采埃孚等配套企业在核心零部件领域占据全球领先地位，凭借精密制造工艺形成硬核技术优势，同时积极布局电动化与智能化转型，持续以高研发投入推动创新，稳居世界汽车工业标杆地位。</p>
                             <p>德国工业体系成熟且技术领先，坐拥众多细分领域的"隐形冠军"企业，机械、化工、汽车等产业实力突出，外贸是其经济核心支柱。</p>
-                            <h2 class="font-bold text-xl mb-3 mt-6">基本信息</h2>
-                            <p>首都：柏林</p>
-                            <p>成立时间：1949年5月23日</p>
-                            <p>官方语言：德语</p>
-                            <p>政治体制：联邦制、议会共和制</p>
-                            <p>货币：欧元（€）</p>
-                            <p>主要宗教：基督教（新教、天主教为主）</p>
-                            <p>国歌：《德意志之歌》（第三段）</p>
-                            <p>最大城市：柏林、汉堡、慕尼黑</p>
-                            <p>主要河流：莱茵河、多瑙河、易北河</p>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">基本信息</h2>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">首都</span>
+                                    <span class="font-medium">柏林</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">成立时间</span>
+                                    <span class="font-medium">1949年5月23日</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">官方语言</span>
+                                    <span class="font-medium">德语</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">政治体制</span>
+                                    <span class="font-medium">联邦制、议会共和制</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">货币</span>
+                                    <span class="font-medium">欧元 (€)</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">主要宗教</span>
+                                    <span class="font-medium">基督教（新教、天主教）</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">国歌</span>
+                                    <span class="font-medium">《德意志之歌》</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 dark:text-gray-500 text-xs uppercase">最大城市</span>
+                                    <span class="font-medium">柏林、汉堡、慕尼黑</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-100 dark:border-slate-700 space-y-3 text-sm">
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-map-marker text-primary mt-0.5"></i>
+                                    <div>
+                                        <span class="font-medium">地理位置</span>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">德国位于欧洲中部，东邻波兰、捷克，南毗奥地利、瑞士，西接荷兰、比利时、卢森堡、法国，北接丹麦，濒临北海和波罗的海。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-users text-primary mt-0.5"></i>
+                                    <div>
+                                        <span class="font-medium">人口</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs ml-2">约8350万（2025年底）</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-area-chart text-primary mt-0.5"></i>
+                                    <div>
+                                        <span class="font-medium">面积</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-xs ml-2">约357,582平方公里</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 rounded-xl p-4">
-                        <h3 class="font-bold text-lg mb-3 flex items-center">
-                            <i class="fa fa-map-marker text-primary mr-2"></i> 地理位置
-                        </h3>
-                        <p class="text-sm">德国位于欧洲中部，东邻波兰、捷克，南毗奥地利、瑞士，西接荷兰、比利时、卢森堡、法国，北接丹麦，濒临北海和波罗的海。</p>
-                        <div class="mt-4">
-                            <h3 class="font-bold text-lg mb-3 flex items-center">
-                                <i class="fa fa-users text-primary mr-2"></i> 人口
-                            </h3>
-                            <p class="text-sm">约8350万（2025年年底数据，来自德国联邦统计局的初步估算数据）</p>
+                </section>
+
+                <!-- 文章列表 -->
+                <div class="space-y-8">
+                    <!-- 文章1 -->
+                    <article id="article-1" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-sun-o"></i> 气象变化
                         </div>
-                        <div class="mt-4">
-                            <h3 class="font-bold text-lg mb-3 flex items-center">
-                                <i class="fa fa-area-chart text-primary mr-2"></i> 面积
-                            </h3>
-                            <p class="text-sm">约357,582平方公里</p>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">欧洲今夏为何如此炎热？</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2026年6月30日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
                         </div>
-                    </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="text-lg mb-4">2026年夏季，欧洲多地再度遭遇极端高温天气，南欧地区气温屡屡突破 <strong class="text-red-600 dark:text-red-400">40°C</strong> 大关，甚至连以凉爽著称的北欧国家也被热浪席卷。这已不是偶然的天气反常，而是全球气候变化背景下愈发频繁的新型气候常态。那么，今年夏天欧洲究竟为何如此炎热？</p>
+
+                            <h3 class="text-xl font-bold my-5 text-slate-900 dark:text-white">一、热穹顶效应：锁住高温的"无形锅盖"</h3>
+                            <p class="mb-4">今年夏天，欧洲上空形成了一股强大的<strong class="text-amber-600 dark:text-amber-400">热穹顶</strong>现象。所谓热穹顶，是指高压系统在大气中形成一个稳定的"盖子"，将下方聚集的热空气牢牢封锁在地面附近。阳光持续加热地面，而热空气无法上升扩散，导致温度逐日攀升。这种效应在<u>伊比利亚半岛</u>和<u>意大利中南部</u>尤为明显，当地正午地表温度一度超过 <strong class="text-red-600 dark:text-red-400">50°C</strong>。</p>
+
+                            <h3 class="text-xl font-bold my-5 text-slate-900 dark:text-white">二、急流异常：极地冷气"绕道走"</h3>
+                            <p class="mb-4">近期研究表明，<strong class="text-blue-600 dark:text-blue-400">北极急流</strong>正在发生显著变化。北极急流本是围绕北极圈的一道高速气流带，起着隔绝极地冷空气与中纬度暖空气的作用。然而，受全球变暖影响，北极海冰大量消融，急流变得愈发<u>蜿蜒曲折</u>，甚至出现停滞。这意味着本该南下为欧洲降温的冷空气被"拦截"在了北极，而撒哈拉地区的热空气则趁虚北上，长驱直入欧洲腹地。</p>
+
+                            <blockquote class="border-l-4 border-amber-500 pl-4 my-6 text-slate-800 dark:text-slate-200 bg-amber-50 dark:bg-amber-900/20 py-3 rounded-r">
+                                <p class="font-medium">"北极正在以全球平均速度 <strong>四倍</strong> 的速度变暖，这正在从根本上改变全球大气环流的运行方式。"</p>
+                                <footer class="text-right mt-2 text-xs not-italic text-gray-500 dark:text-gray-400">—— 哥白尼气候变化服务局（C3S）2026年度报告</footer>
+                            </blockquote>
+
+                            <h3 class="text-xl font-bold my-5 text-slate-900 dark:text-white">三、城市化加剧：混凝土的"蓄热陷阱"</h3>
+                            <p class="mb-4">欧洲城市密度极高的建成区加剧了高温的影响。柏林的<u>城市热岛效应</u>数据显示，市中心夜间温度比郊区高出 <strong class="text-orange-600 dark:text-orange-400">6-8°C</strong>。混凝土建筑和柏油路面在白天大量吸收太阳辐射，夜间缓慢释放，使得城市居民在夜间也无法获得有效降温。巴黎、伦敦、马德里等大都市纷纷启动了应急降温中心，但医疗系统仍面临热射病患者激增的巨大压力。</p>
+
+                            <h3 class="text-xl font-bold my-5 text-slate-900 dark:text-white">四、厄尔尼诺余波与海洋热浪</h3>
+                            <p class="mb-4">尽管2025-2026年的厄尔尼诺事件已趋于结束，但其对全球气候的滞后影响仍在持续。大西洋海表温度目前仍比历史均值高出 <strong class="text-red-600 dark:text-red-400">1.5-2.5°C</strong>，形成了一片被称为<u>海洋热浪</u>的异常区域。温暖的洋面向大气输送了大量额外水汽和热量，进一步强化了欧洲大陆上空的暖高压系统。</p>
+
+                            <h3 class="text-xl font-bold my-5 text-slate-900 dark:text-white">五、这是新常态</h3>
+                            <p class="mb-4">联合国政府间气候变化专门委员会（IPCC）的最新模型指出，即便全球升温控制在 <strong class="text-green-600 dark:text-green-400">1.5°C</strong> 以内，欧洲夏季的极端高温事件仍将比工业革命前频繁约 <strong class="text-red-600 dark:text-red-400">五倍</strong>。今年的酷暑不是孤例，而是一个越来越清晰的警告信号。<u>减少碳排放、加速能源转型、提升城市气候韧性</u>，不再是选择题，而是生存的必答题。</p>
+                        </div>
+                    </article>
+
+                    <!-- 文章2 -->
+                    <article id="article-2" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-industry"></i> 工业与科技
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">德国工业史·汽车帝国开创者</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2025年6月30日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>德国汽车工业是技术与匠心的结晶，从早期的技术突破到如今的产业辉煌，无数先驱奠定了"汽车帝国"的根基。我将聚焦关键人物与历史节点，展现德国汽车工业的崛起历程。</p>
+                            <p>1886年，卡尔·本茨(Karl Benz)发明了世界上第一辆实用化的内燃机汽车——三轮"奔驰专利汽车"(Benz Patent - Motorwagen)，这一创举标志着汽车时代的正式开启。同年，戈特利布·戴姆勒(Gottlieb Daimler)成功研制出第一台高速汽油发动机，并将其安装在马车上，打造了世界上第一辆四轮汽车。</p>
+                            <h3 class="text-xl font-bold my-4 text-slate-900 dark:text-white">汽车工业的崛起</h3>
+                            <p class="mb-4">20世纪初，德国汽车工业开始规模化发展。1926年，奔驰与戴姆勒公司合并，成立戴姆勒 - 奔驰公司，生产梅赛德斯 - 奔驰汽车，成为德国汽车工业的重要里程碑。</p>
+                            <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-lg my-6 border border-gray-100 dark:border-slate-700">
+                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white">德国汽车工业先驱人物</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li><span class="font-medium text-primary">卡尔·本茨(Karl Benz)</span>：发明第一辆实用化汽车，奔驰公司创始人</li>
+                                    <li><span class="font-medium text-primary">戈特利布·戴姆勒(Gottlieb Daimler)</span>：高速汽油发动机发明者，戴姆勒公司创始人</li>
+                                    <li><span class="font-medium text-primary">费迪南德·保时捷(Ferdinand Porsche)</span>：保时捷公司创始人，大众甲壳虫设计者</li>
+                                    <li><span class="font-medium text-primary">奥古斯特·霍希(August Horch)</span>：奥迪公司创始人</li>
+                                </ul>
+                            </div>
+                            <p class="mb-4">1937年，大众汽车公司(Volkswagen)成立，其标志性产品"甲壳虫"(Beetle)成为全球最畅销的车型之一。费迪南德·保时捷(Ferdinand Porsche)设计的这款车，以其简洁可靠的特点，为德国汽车工业赢得了全球声誉。</p>
+                            <p class="mb-4">二战后，德国汽车工业迅速复兴，并在技术创新上持续突破。宝马(BMW)、奥迪(Audi)、保时捷(Porsche)等品牌相继崛起，形成了德国汽车工业多品牌、高品质的产业格局。</p>
+                        </div>
+                    </article>
+
+                    <!-- 文章3 -->
+                    <article id="article-3" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-balance-scale"></i> 冷战与政治
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">柏林墙的兴衰：冷战时期的德国分裂与统一</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="text-lg mb-4">1961年8月13日，一道混凝土墙在柏林市中心拔地而起，将这座城市一分为二。这道墙不仅物理上分割了柏林，更成为冷战时期东西方意识形态对立的象征。本文将回顾柏林墙的兴衰历程，以及它所代表的德国分裂与统一的历史。</p>
+                            <p class="mb-4">二战结束后，德国被美、苏、英、法四国分区占领，柏林也被同样分割。随着冷战加剧，德国逐渐分裂为东德(德意志民主共和国)和西德(德意志联邦共和国)。1948年的柏林封锁与空运事件，标志着东西方在德国问题上的尖锐对立。</p>
+                            <h3 class="text-xl font-bold my-4 text-slate-900 dark:text-white">柏林墙的建造</h3>
+                            <p class="mb-4">20世纪50年代末至60年代初，大量东德居民通过柏林逃往西德，造成东德严重的人才流失和经济困境。为阻止这一趋势，1961年8月13日，东德政府开始在东、西柏林之间修筑围墙，最初是铁丝网，后逐渐加固为混凝土墙。</p>
+                            <blockquote class="border-l-4 border-primary pl-4 italic my-6 text-slate-800 dark:text-slate-200 bg-gray-50 dark:bg-slate-700/50 py-2 rounded-r">
+                                <p>"自由有许多困难，民主亦非完美，然而我们从未建造一堵墙把我们的人民关在里面，来防止他们离开我们。"</p>
+                                <footer class="text-right mt-2 text-xs not-italic text-gray-500 dark:text-gray-400">—— 约翰·F·肯尼迪，1963年</footer>
+                            </blockquote>
+                            <p class="mb-4">柏林墙全长约155公里，由两道墙组成，中间是布满地雷、瞭望塔和警犬的"死亡地带"。在接下来的28年里，这道墙成为冷战最具象的象征，也成为无数东德人无法逾越的障碍。据统计，在柏林墙存在期间，约有5000人尝试翻越，至少136人死亡。</p>
+                            <h3 class="text-xl font-bold my-4 text-slate-900 dark:text-white">柏林墙的倒塌与德国统一</h3>
+                            <p class="mb-4">1989年，东欧剧变浪潮席卷而来。11月9日，东德政府宣布开放柏林墙，允许公民自由穿越。这一历史性时刻引发了民众的狂欢，人们用锤子和镐头开始拆除这道象征分裂的墙。</p>
+                            <p class="mb-4">1990年10月3日，东德正式并入西德，德国实现统一。柏林墙的倒塌不仅标志着德国分裂的终结，更被视为冷战结束的重要里程碑。</p>
+                        </div>
+                    </article>
+
+                    <!-- 文章4 -->
+                    <article id="article-4" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-institution"></i> 中世纪政治
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">神圣罗马帝国：为何千年帝国终成"散沙"？</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2025年8月7日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="mb-4">神圣罗马帝国自公元962年奥托一世加冕起，名义上延续了近千年，却始终未能形成强有力的中央集权。这个被伏尔泰讽刺为"既不神圣，也不罗马，更非帝国"的政治实体，其内部散沙化的根源深植于制度设计和历史发展之中。</p>
+                            <p class="mb-4">帝国皇权的脆弱性从选举制度开始显现。1356年的《金玺诏书》确立七大选帝侯制度，使皇位成为诸侯博弈的奖品。这种制度虽然避免了继承战争，却使皇帝必须不断向诸侯妥协让步，难以建立稳定的中央权威。</p>
+                            <p class="mb-4">宗教改革成为帝国分裂的加速器。1517年马丁·路德发表《九十五条论纲》后，新教诸侯与天主教势力的对立愈演愈烈。1555年《奥格斯堡和约》确立"教随国定"原则，实际上承认了诸侯在其领地内的宗教主权，进一步削弱了帝国统一性。</p>
+                            <p class="mb-4">三十年战争(1618-1648)彻底暴露了帝国的松散本质。这场起源于宗教矛盾，演变为欧洲大战的冲突，使德意志地区人口损失近三分之一。1648年《威斯特伐利亚和约》赋予各邦国近乎完全的主权，包括对外缔约权和战争权，帝国议会沦为形式。</p>
+                            <p class="mb-4">地理因素也不容忽视。德意志地区地处欧洲中部平原，缺乏自然边界，难以形成天然的政治中心。东西南北的文化经济差异，使各地诸侯很早就发展出强烈的地方认同，这种多元性在缺乏强大军事力量压制的情况下，必然导致政治碎片化。</p>
+                            <p class="mb-4">帝国最终在1806年拿破仑的压力下解体，但解体前的数百年间，它早已是一个由数百个大小邦国、自由城市和教会领地组成的松散联盟。这种特殊的政治形态，既反映了中世纪封建制度的演变轨迹，也预示了后来德意志统一的艰难道路。</p>
+                        </div>
+                    </article>
+
+                    <!-- 文章5 -->
+                    <article id="article-5" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-book"></i> 哲学思想
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">德国哲学·康德与他的批判哲学</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="text-lg mb-4">伊曼努尔·康德（Immanuel Kant，1724 - 1804）是德国古典哲学的奠基人，他的批判哲学体系对西方哲学产生了深远影响。康德的思想不仅改变了哲学思考的方向，也为现代科学、伦理学和美学奠定了理论基础。</p>
+                            <p class="mb-4">康德出生于东普鲁士的哥尼斯堡（现俄罗斯加里宁格勒），并在此度过了他的一生。尽管他从未远离家乡，但他的思想却具有全球性的影响力。他的代表作《纯粹理性批判》（1781）、《实践理性批判》（1788）和《判断力批判》（1790）构成了他的批判哲学体系，分别探讨了知识、道德和审美三个领域的基本问题。</p>
+                            <h3 class="text-xl font-bold my-4 text-slate-900 dark:text-white">批判哲学的核心</h3>
+                            <p class="mb-4">康德哲学的核心是"批判"，即对人类理性能力的考察。他试图调和经验主义和理性主义的矛盾，提出人类知识既依赖于经验，也依赖于先天的认知形式。</p>
+                            <p class="mb-4">在《纯粹理性批判》中，康德提出了"先天综合判断"的概念，认为人类的知识既包含经验内容，也包含先天的认知结构（如时间、空间和因果关系）。他认为，这些先天结构是人类认识世界的必要条件，但同时也限制了我们对"物自体"的认识。</p>
+                            <blockquote class="border-l-4 border-primary pl-4 italic my-6 text-slate-800 dark:text-slate-200 bg-gray-50 dark:bg-slate-700/50 py-2 rounded-r">
+                                <p>"有两样东西永远是光辉灿烂的，在我们的心灵中越是经常地思考它们，就越是充满永远新鲜、有增无已的赞叹和敬畏：我们头上的星空和我们心中的道德法则。"</p>
+                                <footer class="text-right mt-2 text-xs not-italic text-gray-500 dark:text-gray-400">—— 康德，《实践理性批判》</footer>
+                            </blockquote>
+                            <p class="mb-4">在伦理学领域，康德提出了"绝对命令"的概念，认为道德行为必须基于普遍的理性原则，而不是个人欲望或后果。他强调人的自主性和尊严，认为每个人都应该被视为目的，而不仅仅是手段。</p>
+                            <p class="mb-4">康德的哲学思想对后世产生了深远影响，启发了费希特、谢林、黑格尔等德国古典哲学家的思考，也为现代哲学、科学和伦理学提供了重要的理论资源。他的思想至今仍是哲学研究的重要课题，其对人类理性和道德的深刻思考，依然具有重要的现实意义。</p>
+                        </div>
+                    </article>
+
+                    <!-- 文章6 -->
+                    <article id="article-6" class="bg-white dark:bg-slate-800 rounded-xl shadow-soft hover:shadow-soft-hover transition-all duration-300 p-8 border border-gray-100 dark:border-slate-700 card-hover scroll-fade">
+                        <div class="flex items-center gap-2 mb-4 text-xs font-medium text-primary uppercase tracking-wide">
+                            <i class="fa fa-fighter-jet"></i> 二战军事
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">二战风云：俾斯麦号战列舰为何那么有知名度？</h2>
+                        <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6">
+                            <span><i class="fa fa-calendar-o mr-1"></i> 2025年8月7日</span>
+                            <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
+                        </div>
+                        <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="mb-4">1941年5月，德国海军最强大的俾斯麦号战列舰首次出征便震惊世界，这艘以"铁血宰相"命名的钢铁巨兽，在短短数日内创造了二战海战史上最具传奇性的篇章之一，其知名度远超同期其他战舰。</p>
+                            <p class="mb-4">俾斯麦号的威名首先源于其惊人的战斗力。作为纳粹德国海军"Z计划"的巅峰之作，它装备8门380毫米主炮，装甲最厚处达360毫米，满载排水量超过5万吨。1941年5月24日的丹麦海峡海战中，俾斯麦号仅用五分钟就击沉英国皇家海军骄傲胡德号战列巡洋舰，这一战果直接震动丘吉尔内阁。</p>
+                            <p class="mb-4">这艘战舰的传奇色彩更来自其悲壮的结局。在遭受英国海军半个舰队围剿后，1941年5月27日，伤痕累累的俾斯麦号在失去战斗力的情况下，船员选择打开通海阀自沉。从初战告捷到最终沉没仅相隔八天，这种短暂而震撼的存在方式，符合所有史诗悲剧的叙事要素。</p>
+                            <p class="mb-4">俾斯麦号的象征意义同样重要。对德国而言，它代表着突破《凡尔赛条约》束缚的军事复兴；对英国而言，围剿俾斯麦的行动则彰显了皇家海军维护海上霸权的决心。这种双重象征性使它的故事超越单纯军事层面，成为国家意志较量的缩影。</p>
+                            <p class="mb-4">战后文化传播进一步放大了它的知名度。1959年英国电影《击沉俾斯麦号！》获得奥斯卡提名，1960年约翰尼·霍顿的同名民谣登上 Billboard 榜首，1990年代多款电子游戏重现其海战场景。这些文化产品不断强化着公众对这艘战舰的记忆。</p>
+                            <p class="mb-4">如今沉没在大西洋海底的俾斯麦号残骸已被确认为战争墓地，但关于它的研究讨论从未停止。作为工业时代的海洋巨兽与战争符号，它完美融合了技术奇迹、英雄主义与悲剧宿命，这正是其知名度历久不衰的根本原因。</p>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-
-        <!-- 文章列表 -->
-        <div class="space-y-8">
-            <!-- 文章1 -->
-<article id="article-1" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-    <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">现代德国的复兴之路：从废墟到欧洲引擎</h2>
-    <div class="text-center text-gray-500 text-sm mb-6">
-        <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年8月7日</span>
-        <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
-    </div>
-    <div class="prose max-w-none">
-        <p class="text-lg mb-4">二战后的德国，如同一只浴火重生的凤凰，从战争的废墟中崛起，创造了令世界瞩目的"经济奇迹"。这个曾经分裂的国家，如今已成为欧洲最大的经济体和全球第四大经济体，其发展历程堪称现代国家复兴的典范。</p>
-        <p class="mb-4">1949年，德意志联邦共和国(西德)成立，在首任总理康拉德·阿登纳的领导下，德国开始经济重建。社会市场经济模式的确立，使德国经济在50年代实现年均8%的增长。1961年柏林墙的建立，成为冷战时期德国分裂的象征，却也激发了西德人民更坚定的发展决心。</p>
-        <p class="mb-4">1989年11月9日，柏林墙倒塌，这一历史性事件为德国统一铺平了道路。1990年10月3日，两德正式统一。尽管统一初期面临巨大经济挑战，但德国通过结构性改革和产业升级，成功实现了东西部的经济融合。2005年，安格拉·默克尔成为德国首位女总理，开启了长达16年的"默克尔时代"。</p>
-        <blockquote class="border-l-4 border-primary pl-4 italic my-6">
-            <p>"德国成功的秘诀在于将技术创新与工匠精神完美结合，同时保持社会公平与环境保护的平衡。"</p>
-            <footer class="text-right mt-2">—— 德国经济专家委员会报告</footer>
-        </blockquote>
-        <p class="mb-4">今天的德国，以其强大的制造业闻名全球。从汽车工业的宝马、奔驰、大众，到精密机械的西门子、博世，德国品牌已成为高品质的代名词。德国还是可再生能源技术的领导者，计划在2045年前实现碳中和。作为欧盟的核心成员国，德国在维护欧洲团结、应对全球挑战方面发挥着关键作用。</p>
-        <p class="mb-4">然而，德国也面临人口老龄化、数字化转型和能源转型等挑战。俄乌冲突引发的能源危机，考验着德国经济的韧性。但历史证明，这个善于从危机中学习的民族，总能找到创新的解决方案。在21世纪的多变格局中，德国继续书写着属于自己的成功故事。</p>
-    </div>
-</article>
-
-            <!-- 文章2 -->
-            <article id="article-2" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国工业史·汽车帝国开创者</h2>
-                <div class="text-center text-gray-500 text-sm mb-6">
-                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年6月30日</span>
-                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
-                </div>
-                <div class="prose max-w-none">
-                    <p class="text-lg mb-4">德国汽车工业是技术与匠心的结晶，从早期的技术突破到如今的产业辉煌，无数先驱奠定了"汽车帝国"的根基。我将聚焦关键人物与历史节点，展现德国汽车工业的崛起历程。</p>
-                    <p class="mb-4">1886年，卡尔·本茨(Karl Benz)发明了世界上第一辆实用化的内燃机汽车——三轮"奔驰专利汽车"(Benz
-                        Patent - Motorwagen)，这一创举标志着汽车时代的正式开启。同年，戈特利布·戴姆勒(Gottlieb Daimler)成功研制出第一台高速汽油发动机，并将其安装在马车上，打造了世界上第一辆四轮汽车。</p>
-                    <h3 class="text-xl font-bold my-4">汽车工业的崛起</h3>
-                    <p class="mb-4">20世纪初，德国汽车工业开始规模化发展。1926年，奔驰与戴姆勒公司合并，成立戴姆勒 - 奔驰公司，生产梅赛德斯 - 奔驰汽车，成为德国汽车工业的重要里程碑。</p>
-                    <div class="bg-gray-50 p-4 rounded-lg my-6">
-                        <h4 class="font-bold mb-2">德国汽车工业先驱人物</h4>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><span class="font-medium">卡尔·本茨(Karl Benz)</span>：发明第一辆实用化汽车，奔驰公司创始人</li>
-                            <li><span class="font-medium">戈特利布·戴姆勒(Gottlieb Daimler)</span>：高速汽油发动机发明者，戴姆勒公司创始人</li>
-                            <li><span class="font-medium">费迪南德·保时捷(Ferdinand Porsche)</span>：保时捷公司创始人，大众甲壳虫设计者</li>
-                            <li><span class="font-medium">奥古斯特·霍希(August Horch)</span>：奥迪公司创始人</li>
-                        </ul>
-                    </div>
-                    <p class="mb-4">1937年，大众汽车公司(Volkswagen)成立，其标志性产品"甲壳虫"(Beetle)成为全球最畅销的车型之一。费迪南德·保时捷(Ferdinand Porsche)设计的这款车，以其简洁可靠的特点，为德国汽车工业赢得了全球声誉。</p>
-                    <p class="mb-4">二战后，德国汽车工业迅速复兴，并在技术创新上持续突破。宝马(BMW)、奥迪(Audi)、保时捷(Porsche)等品牌相继崛起，形成了德国汽车工业多品牌、高品质的产业格局。</p>
-                </div>
-            </article>
-
-            <!-- 文章3 -->
-            <article id="article-3" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">柏林墙的兴衰：冷战时期的德国分裂与统一</h2>
-                <div class="text-center text-gray-500 text-sm mb-6">
-                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
-                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
-                </div>
-                <div class="prose max-w-none">
-                    <p class="text-lg mb-4">1961年8月13日，一道混凝土墙在柏林市中心拔地而起，将这座城市一分为二。这道墙不仅物理上分割了柏林，更成为冷战时期东西方意识形态对立的象征。本文将回顾柏林墙的兴衰历程，以及它所代表的德国分裂与统一的历史。</p>
-                    <p class="mb-4">二战结束后，德国被美、苏、英、法四国分区占领，柏林也被同样分割。随着冷战加剧，德国逐渐分裂为东德(德意志民主共和国)和西德(德意志联邦共和国)。1948年的柏林封锁与空运事件，标志着东西方在德国问题上的尖锐对立。</p>
-                    <h3 class="text-xl font-bold my-4">柏林墙的建造</h3>
-                    <p class="mb-4">20世纪50年代末至60年代初，大量东德居民通过柏林逃往西德，造成东德严重的人才流失和经济困境。为阻止这一趋势，1961年8月13日，东德政府开始在东、西柏林之间修筑围墙，最初是铁丝网，后逐渐加固为混凝土墙。</p>
-                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
-                        <p>"自由有许多困难，民主亦非完美，然而我们从未建造一堵墙把我们的人民关在里面，来防止他们离开我们。"</p>
-                        <footer class="text-right mt-2">—— 约翰·F·肯尼迪，1963年</footer>
-                    </blockquote>
-                    <p class="mb-4">柏林墙全长约155公里，由两道墙组成，中间是布满地雷、瞭望塔和警犬的"死亡地带"。在接下来的28年里，这道墙成为冷战最具象的象征，也成为无数东德人无法逾越的障碍。据统计，在柏林墙存在期间，约有5000人尝试翻越，至少136人死亡。</p>
-                    <h3 class="text-xl font-bold my-4">柏林墙的倒塌与德国统一</h3>
-                    <p class="mb-4">1989年，东欧剧变浪潮席卷而来。11月9日，东德政府宣布开放柏林墙，允许公民自由穿越。这一历史性时刻引发了民众的狂欢，人们用锤子和镐头开始拆除这道象征分裂的墙。</p>
-                    <p class="mb-4">1990年10月3日，东德正式并入西德，德国实现统一。柏林墙的倒塌不仅标志着德国分裂的终结，更被视为冷战结束的重要里程碑。</p>
-                </div>
-            </article>
-
-            <!-- 文章4 -->
-<article id="article-4" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-    <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">神圣罗马帝国：为何千年帝国终成"散沙"？</h2>
-    <div class="text-center text-gray-500 text-sm mb-6">
-        <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年8月7日</span>
-        <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
-    </div>
-    <div class="prose max-w-none">
-        <p class="mb-4">神圣罗马帝国自公元962年奥托一世加冕起，名义上延续了近千年，却始终未能形成强有力的中央集权。这个被伏尔泰讽刺为"既不神圣，也不罗马，更非帝国"的政治实体，其内部散沙化的根源深植于制度设计和历史发展之中。</p>
-        <p class="mb-4">帝国皇权的脆弱性从选举制度开始显现。1356年的《金玺诏书》确立七大选帝侯制度，使皇位成为诸侯博弈的奖品。这种制度虽然避免了继承战争，却使皇帝必须不断向诸侯妥协让步，难以建立稳定的中央权威。</p>
-        <p class="mb-4">宗教改革成为帝国分裂的加速器。1517年马丁·路德发表《九十五条论纲》后，新教诸侯与天主教势力的对立愈演愈烈。1555年《奥格斯堡和约》确立"教随国定"原则，实际上承认了诸侯在其领地内的宗教主权，进一步削弱了帝国统一性。</p>
-        <p class="mb-4">三十年战争(1618-1648)彻底暴露了帝国的松散本质。这场起源于宗教矛盾，演变为欧洲大战的冲突，使德意志地区人口损失近三分之一。1648年《威斯特伐利亚和约》赋予各邦国近乎完全的主权，包括对外缔约权和战争权，帝国议会沦为形式。</p>
-        <p class="mb-4">地理因素也不容忽视。德意志地区地处欧洲中部平原，缺乏自然边界，难以形成天然的政治中心。东西南北的文化经济差异，使各地诸侯很早就发展出强烈的地方认同，这种多元性在缺乏强大军事力量压制的情况下，必然导致政治碎片化。</p>
-        <p class="mb-4">帝国最终在1806年拿破仑的压力下解体，但解体前的数百年间，它早已是一个由数百个大小邦国、自由城市和教会领地组成的松散联盟。这种特殊的政治形态，既反映了中世纪封建制度的演变轨迹，也预示了后来德意志统一的艰难道路。</p>
-    </div>
-</article>
-
-            <!-- 文章5 -->
-            <article id="article-5" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">德国哲学·康德与他的批判哲学</h2>
-                <div class="text-center text-gray-500 text-sm mb-6">
-                    <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年7月4日</span>
-                    <span><i class="fa fa-user-o mr-1"></i> Doubao AI</span>
-                </div>
-                <div class="prose max-w-none">
-                    <p class="text-lg mb-4">伊曼努尔·康德（Immanuel Kant，1724 - 1804）是德国古典哲学的奠基人，他的批判哲学体系对西方哲学产生了深远影响。康德的思想不仅改变了哲学思考的方向，也为现代科学、伦理学和美学奠定了理论基础。</p>
-                    <p class="mb-4">康德出生于东普鲁士的哥尼斯堡（现俄罗斯加里宁格勒），并在此度过了他的一生。尽管他从未远离家乡，但他的思想却具有全球性的影响力。他的代表作《纯粹理性批判》（1781）、《实践理性批判》（1788）和《判断力批判》（1790）构成了他的批判哲学体系，分别探讨了知识、道德和审美三个领域的基本问题。</p>
-                    <h3 class="text-xl font-bold my-4">批判哲学的核心</h3>
-                    <p class="mb-4">康德哲学的核心是"批判"，即对人类理性能力的考察。他试图调和经验主义和理性主义的矛盾，提出人类知识既依赖于经验，也依赖于先天的认知形式。</p>
-                    <p class="mb-4">在《纯粹理性批判》中，康德提出了"先天综合判断"的概念，认为人类的知识既包含经验内容，也包含先天的认知结构（如时间、空间和因果关系）。他认为，这些先天结构是人类认识世界的必要条件，但同时也限制了我们对"物自体"的认识。</p>
-                    <blockquote class="border-l-4 border-primary pl-4 italic my-6">
-                        <p>"有两样东西永远是光辉灿烂的，在我们的心灵中越是经常地思考它们，就越是充满永远新鲜、有增无已的赞叹和敬畏：我们头上的星空和我们心中的道德法则。"</p>
-                        <footer class="text-right mt-2">—— 康德，《实践理性批判》</footer>
-                    </blockquote>
-                    <p class="mb-4">在伦理学领域，康德提出了"绝对命令"的概念，认为道德行为必须基于普遍的理性原则，而不是个人欲望或后果。他强调人的自主性和尊严，认为每个人都应该被视为目的，而不仅仅是手段。</p>
-                    <p class="mb-4">康德的哲学思想对后世产生了深远影响，启发了费希特、谢林、黑格尔等德国古典哲学家的思考，也为现代哲学、科学和伦理学提供了重要的理论资源。他的思想至今仍是哲学研究的重要课题，其对人类理性和道德的深刻思考，依然具有重要的现实意义。</p>
-                </div>
-            </article>
-
-            <!-- 文章6 -->
-<article id="article-6" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover scroll-fade">
-    <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-primary mb-4 text-center">二战风云：俾斯麦号战列舰为何那么有知名度？</h2>
-    <div class="text-center text-gray-500 text-sm mb-6">
-        <span class="inline-block mr-4"><i class="fa fa-calendar-o mr-1"></i> 2025年8月7日</span>
-        <span><i class="fa fa-user-o mr-1"></i> DeepSeek</span>
-    </div>
-    <div class="prose max-w-none">
-        <p class="mb-4">1941年5月，德国海军最强大的俾斯麦号战列舰首次出征便震惊世界，这艘以"铁血宰相"命名的钢铁巨兽，在短短数日内创造了二战海战史上最具传奇性的篇章之一，其知名度远超同期其他战舰。</p>
-        <p class="mb-4">俾斯麦号的威名首先源于其惊人的战斗力。作为纳粹德国海军"Z计划"的巅峰之作，它装备8门380毫米主炮，装甲最厚处达360毫米，满载排水量超过5万吨。1941年5月24日的丹麦海峡海战中，俾斯麦号仅用五分钟就击沉英国皇家海军骄傲胡德号战列巡洋舰，这一战果直接震动丘吉尔内阁。</p>
-        <p class="mb-4">这艘战舰的传奇色彩更来自其悲壮的结局。在遭受英国海军半个舰队围剿后，1941年5月27日，伤痕累累的俾斯麦号在失去战斗力的情况下，船员选择打开通海阀自沉。从初战告捷到最终沉没仅相隔八天，这种短暂而震撼的存在方式，符合所有史诗悲剧的叙事要素。</p>
-        <p class="mb-4">俾斯麦号的象征意义同样重要。对德国而言，它代表着突破《凡尔赛条约》束缚的军事复兴；对英国而言，围剿俾斯麦的行动则彰显了皇家海军维护海上霸权的决心。这种双重象征性使它的故事超越单纯军事层面，成为国家意志较量的缩影。</p>
-        <p class="mb-4">战后文化传播进一步放大了它的知名度。1959年英国电影《击沉俾斯麦号！》获得奥斯卡提名，1960年约翰尼·霍顿的同名民谣登上 Billboard 榜首，1990年代多款电子游戏重现其海战场景。这些文化产品不断强化着公众对这艘战舰的记忆。</p>
-        <p class="mb-4">如今沉没在大西洋海底的俾斯麦号残骸已被确认为战争墓地，但关于它的研究讨论从未停止。作为工业时代的海洋巨兽与战争符号，它完美融合了技术奇迹、英雄主义与悲剧宿命，这正是其知名度历久不衰的根本原因。</p>
-    </div>
-</article>
         </div>
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-primary text-white py-6">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-lg font-bold">日耳曼尼亚二三事</h3>
-                    <p class="text-white/80 text-sm">探索德意志的历史、文化以及现代历闻</p>
+    <footer class="bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center gap-2 justify-center md:justify-start">
+                        <i class="fa fa-book text-primary"></i>
+                        <span class="font-bold text-slate-900 dark:text-white">日耳曼尼亚二三事</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">探索德意志的历史、文化以及现代历闻</p>
                 </div>
-                <div class="text-right">
-                    <p class="text-sm">
-                        [发布地] 中国-北京<br>
-                        [网站创建时间] 2025年6月30日<br>
-                        [网页名称] 日耳曼尼亚二三事<br>
-                        [特别鸣谢] 我不是徐某人（QQ）
-                    </p>
+                <div class="text-right text-sm text-gray-500 dark:text-gray-400">
+                    <p>[发布地] 中国-北京</p>
+                    <p>[网站创建时间] 2025年6月30日</p>
+                    <p>[网页名称] 日耳曼尼亚二三事</p>
+                    <p>[特别鸣谢] 我不是徐某人（QQ）</p>
                 </div>
             </div>
-            <div class="border-t border-white/20 mt-6 pt-6 text-center text-sm text-white/70">
+            <div class="border-t border-gray-200 dark:border-slate-700 mt-6 pt-6 text-center text-sm text-gray-400 dark:text-gray-500">
                 &copy; 2025-2026 日耳曼尼亚二三事
             </div>
         </div>
     </footer>
 
+    <!-- 音频播放组件 -->
+    <audio id="myAudio" loop preload="metadata"></audio>
+
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
+        // ===== 设置面板 =====
         const settingsToggle = document.getElementById('settings-toggle');
         const settingsPanel = document.getElementById('settings-panel');
         const settingsOverlay = document.getElementById('settings-overlay');
-        const musicToggle = document.getElementById('music-toggle');
-        const musicIcon = document.getElementById('music-icon');
+        const settingsContent = document.getElementById('settings-content');
 
-        // 轮播功能
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slides');
-        
-        function showSlides() {
-            // 隐藏所有幻灯片
-            slides.forEach(slide => {
-                slide.style.opacity = '0';
-            });
-            
-            // 增加索引
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            
-            // 显示当前幻灯片
-            slides[slideIndex - 1].style.opacity = '1';
-            
-            // 设置5秒后自动切换
-            setTimeout(showSlides, 5000);
-        }
-
-        // 强制使用浅色模式初始化
-        localStorage.setItem('darkMode', 'false');
-        applyLightMode();
-
-        themeToggle.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                applyLightMode();
-                localStorage.setItem('darkMode', 'false');
+        settingsToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (settingsPanel.classList.contains('hidden')) {
+                settingsPanel.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    settingsContent.classList.remove('scale-95', 'opacity-0');
+                    settingsContent.classList.add('scale-100', 'opacity-100');
+                });
             } else {
-                applyDarkMode();
-                localStorage.setItem('darkMode', 'true');
+                closeSettings();
             }
-        });
-
-        function applyDarkMode() {
-            body.classList.add('dark-mode');
-            themeIcon.className = 'fa fa-moon text-white text-lg';
-        }
-
-        function applyLightMode() {
-            body.classList.remove('dark-mode');
-            themeIcon.className = 'fa fa-sun text-yellow-500 text-lg';
-        }
-
-        // 设置面板功能
-        settingsToggle.addEventListener('click', () => {
-            settingsPanel.classList.remove('opacity-0', 'invisible', 'scale-95');
-            settingsPanel.classList.add('opacity-100', 'visible', 'scale-100');
-            settingsOverlay.classList.remove('opacity-0', 'invisible');
-            settingsOverlay.classList.add('opacity-100', 'visible');
         });
 
         function closeSettings() {
-            settingsPanel.classList.remove('opacity-100', 'visible', 'scale-100');
-            settingsPanel.classList.add('opacity-0', 'invisible', 'scale-95');
-            settingsOverlay.classList.remove('opacity-100', 'visible');
-            settingsOverlay.classList.add('opacity-0', 'invisible');
+            settingsContent.classList.remove('scale-100', 'opacity-100');
+            settingsContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => settingsPanel.classList.add('hidden'), 300);
         }
 
         settingsOverlay.addEventListener('click', closeSettings);
 
-        // 音乐播放按钮功能
+        // ===== 移动端目录面板 =====
+        const tocToggleMobile = document.getElementById('toc-toggle-mobile');
+        const tocMobilePanel = document.getElementById('toc-mobile-panel');
+        const tocMobileOverlay = document.getElementById('toc-mobile-overlay');
+        const tocMobileContent = document.getElementById('toc-mobile-content');
+
+        tocToggleMobile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (tocMobilePanel.classList.contains('hidden')) {
+                tocMobilePanel.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    tocMobileContent.classList.remove('scale-95', 'opacity-0');
+                    tocMobileContent.classList.add('scale-100', 'opacity-100');
+                });
+            } else {
+                closeTocMobile();
+            }
+        });
+
+        function closeTocMobile() {
+            tocMobileContent.classList.remove('scale-100', 'opacity-100');
+            tocMobileContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => tocMobilePanel.classList.add('hidden'), 300);
+        }
+
+        tocMobileOverlay.addEventListener('click', closeTocMobile);
+
+        document.querySelectorAll('.toc-mobile-link').forEach(link => {
+            link.addEventListener('click', closeTocMobile);
+        });
+
+        // ===== 夜间模式 =====
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // 初始化：检查 localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+            themeIcon.className = 'fa fa-moon-o text-primary';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+                themeIcon.className = 'fa fa-sun-o text-accent';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+                themeIcon.className = 'fa fa-moon-o text-primary';
+            }
+        });
+
+        // ===== 音乐播放 =====
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const audio = document.getElementById('myAudio');
+
         musicToggle.addEventListener('click', () => {
             toggleMusic();
             updateMusicIcon();
         });
 
         function updateMusicIcon() {
-            const audio = document.getElementById("myAudio");
             if (audio.paused) {
-                musicIcon.className = "fa fa-music";
+                musicIcon.className = "fa fa-music text-primary";
             } else {
-                musicIcon.className = "fa fa-pause";
+                musicIcon.className = "fa fa-pause text-primary";
+            }
+        }
+
+        audio.addEventListener('play', () => {
+            musicIcon.className = "fa fa-pause text-primary";
+        });
+        audio.addEventListener('pause', () => {
+            musicIcon.className = "fa fa-music text-primary";
+        });
+
+        // ===== 轮播功能 =====
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slides');
+
+        function showSlides() {
+            slides.forEach(slide => { slide.style.opacity = '0'; });
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.opacity = '1';
+            setTimeout(showSlides, 5000);
+        }
+
+        // ===== 音乐控制逻辑 =====
+        let currentAudioSrc = "";
+
+        window.addEventListener('DOMContentLoaded', function() {
+            updateMusicInfoByTime();
+            setInterval(updateMusicInfoByTime, 5 * 60 * 1000);
+            showSlides();
+
+            // 滚动淡入
+            const scrollFadeElements = document.querySelectorAll('.scroll-fade');
+            function checkScroll() {
+                scrollFadeElements.forEach(el => {
+                    const elTop = el.getBoundingClientRect().top;
+                    if (elTop < window.innerHeight - 50) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+            setTimeout(checkScroll, 100);
+            window.addEventListener('scroll', checkScroll);
+        });
+
+        function updateMusicInfoByTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const isDaytime = (hours > 5 || (hours === 5 && minutes >= 30)) &&
+                             (hours < 18 || (hours === 18 && minutes < 30));
+
+            const bindTimeEls = document.querySelectorAll('#bindTime, #bindTime-m');
+            const musicNameEls = document.querySelectorAll('#musicName, #musicName-m');
+            const playTimeEls = document.querySelectorAll('#playTime, #playTime-m');
+
+            let newSrc = isDaytime ? "日耳曼尼亚二三事.mp3" : "日耳曼尼亚二三事（夜间）.mp3";
+
+            if (currentAudioSrc !== newSrc) {
+                const wasPlaying = !audio.paused;
+
+                if (isDaytime) {
+                    bindTimeEls.forEach(el => el.textContent = "2026年2月6日");
+                    musicNameEls.forEach(el => el.textContent = "Was wollen wir trinken (7 Tage lang) - Heino");
+                    playTimeEls.forEach(el => el.textContent = "2026年2月6日~2026年7月1日");
+                } else {
+                    bindTimeEls.forEach(el => el.textContent = "2026年2月6日");
+                    musicNameEls.forEach(el => el.textContent = "Für immer - Eisblume");
+                    playTimeEls.forEach(el => el.textContent = "2026年2月6日~2026年7月1日");
+                }
+
+                currentAudioSrc = newSrc;
+                audio.src = newSrc;
+
+                audio.addEventListener('loadedmetadata', function onLoaded() {
+                    if (wasPlaying) audio.play().catch(e => console.log("自动播放失败:", e));
+                    audio.removeEventListener('loadedmetadata', onLoaded);
+                });
+            }
+        }
+
+        function toggleMusic() {
+            updateMusicInfoByTime();
+            if (audio.paused) {
+                audio.play().catch(e => { alert("播放失败: " + e.message); console.log(e); });
+            } else {
+                audio.pause();
             }
         }
     </script>
-        <!-- 音频播放核心组件（放在页面底部） -->
-<!-- 音频播放组件 -->
-<audio id="myAudio" loop preload="metadata"></audio>
-<!-- 音乐控制脚本（放在页面最底部的script中） -->
-<script>
-// 日耳曼尼亚二三事 音乐控制逻辑
-let currentAudioSrc = "";
-
-// 页面加载完成后初始化
-window.addEventListener('DOMContentLoaded', function() {
-  // 初始化音乐信息
-  updateMusicInfoByTime();
-  // 定时检查时间（5分钟一次）
-  setInterval(updateMusicInfoByTime, 5 * 60 * 1000);
-  
-  // 启动轮播
-  showSlides();
-  
-  const audio = document.getElementById("myAudio");
-  const musicIcon = document.getElementById("music-icon");
-  
-  // 监听音频状态变化，同步按钮样式
-  audio.addEventListener('play', function() {
-    musicIcon.className = "fa fa-pause";
-  });
-  
-  audio.addEventListener('pause', function() {
-    musicIcon.className = "fa fa-music";
-  });
-});
-
-// 根据时间更新音乐信息和音频源
-function updateMusicInfoByTime() {
-  const now = new Date();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  
-  // 判断是否为日间（5:30~18:29）
-  const isDaytime = (hours > 5 || (hours === 5 && minutes >= 30)) && 
-                   (hours < 18 || (hours === 18 && minutes < 30));
-  
-  // 获取DOM元素
-  const bindTimeEl = document.getElementById('bindTime');
-  const musicNameEl = document.getElementById('musicName');
-  const playTimeEl = document.getElementById('playTime');
-  const audio = document.getElementById("myAudio");
-  
-  // 确定当前应该播放的音乐
-  let newSrc = isDaytime ? "日耳曼尼亚二三事.mp3" : "日耳曼尼亚二三事（夜间）.mp3";
-  
-  // 只有当音乐源变化时才更新
-  if (currentAudioSrc !== newSrc) {
-    // 记录当前播放状态
-    const wasPlaying = !audio.paused;
-    
-    // 更新音乐信息
-    if (isDaytime) {
-      bindTimeEl.textContent = "2026年2月6日";
-      musicNameEl.textContent = "Was wollen wir trinken (7 Tage lang) - Heino";
-      playTimeEl.textContent = "2026年2月6日~2026年7月1日";
-    } else {
-      bindTimeEl.textContent = "2026年2月6日";
-      musicNameEl.textContent = "Für immer - Eisblume";
-      playTimeEl.textContent = "2026年2月6日~2026年7月1日";
-    }
-    
-    // 更新音频源
-    currentAudioSrc = newSrc;
-    audio.src = newSrc;
-    
-    // 加载完成后恢复播放状态
-    audio.addEventListener('loadedmetadata', function onLoadedMetadata() {
-      if (wasPlaying) {
-        audio.play().catch(e => console.log("自动播放失败:", e));
-      }
-      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
-    });
-  }
-}
-
-// 切换播放/暂停状态
-function toggleMusic() {
-  const audio = document.getElementById("myAudio");
-  
-  // 确保使用正确的音频源
-  updateMusicInfoByTime();
-  
-  if (audio.paused) {
-    // 继续播放（从上次暂停位置）
-    audio.play().catch(e => {
-      alert("播放失败: " + e.message);
-      console.log(e);
-    });
-  } else {
-    // 暂停播放
-    audio.pause();
-  }
-}
-
-// 文章目录功能
-window.addEventListener('DOMContentLoaded', function() {
-    const tocToggle = document.getElementById('toc-toggle');
-    const tocContent = document.getElementById('toc-content');
-    const tocContainer = document.getElementById('toc-container');
-    const tocLinks = tocContent.querySelectorAll('a');
-    
-    // 切换目录显示/隐藏
-    tocToggle.addEventListener('click', function() {
-        if (tocContent.classList.contains('opacity-0')) {
-            // 显示目录
-            tocContent.classList.remove('opacity-0', 'invisible', '-translate-x-4');
-            tocContent.classList.add('opacity-100', 'visible', 'translate-x-0');
-        } else {
-            // 隐藏目录
-            tocContent.classList.remove('opacity-100', 'visible', 'translate-x-0');
-            tocContent.classList.add('opacity-0', 'invisible', '-translate-x-4');
-        }
-    });
-    
-    // 点击目录链接后隐藏目录
-    tocLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            tocContent.classList.remove('opacity-100', 'visible', 'translate-x-0');
-            tocContent.classList.add('opacity-0', 'invisible', '-translate-x-4');
-        });
-    });
-    
-    // 点击页面其他地方隐藏目录
-    document.addEventListener('click', function(event) {
-        if (!tocContainer.contains(event.target)) {
-            tocContent.classList.remove('opacity-100', 'visible', 'translate-x-0');
-            tocContent.classList.add('opacity-0', 'invisible', '-translate-x-4');
-        }
-    });
-    
-    // 滚动淡入效果
-    const scrollFadeElements = document.querySelectorAll('.scroll-fade');
-    
-    function checkScroll() {
-        scrollFadeElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 50;
-            
-            if (elementTop < window.innerHeight - elementVisible) {
-                element.classList.add('visible');
-            }
-        });
-    }
-    
-    // 确保DOM完全加载后再执行初始检查
-    setTimeout(checkScroll, 100);
-    // 滚动时检查
-    window.addEventListener('scroll', checkScroll);
-});
-</script>
 </body>
 
 </html>
